@@ -12,7 +12,7 @@
 
 #include <queue>
 using namespace std;
-
+//Compare(a, b) returns true when a should come after b in priority.
 struct Compare {
     bool operator()(Node* a, Node* b) {
         return a->data > b->data; // min-heap
