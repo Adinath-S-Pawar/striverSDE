@@ -27,7 +27,7 @@ long long getTrappedWater(long long* arr, int n) {
     while(left <= right)
     {
         //process smaller bar
-        if(arr[left <= arr[right]])
+        if(arr[left] <= arr[right])
         {
             //update leftmax for higher building
             if(arr[left] >= leftmax)
