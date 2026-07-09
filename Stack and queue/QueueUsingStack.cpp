@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+/*
+Time Complexity: O(1) for push operation, O(n) for pop and peek operations in the worst case when elements need to be shifted.
+Space Complexity: O(n) for storing elements in the two stacks.
+*/
 class StackQueue {
   public:
     stack<int> input, output;
