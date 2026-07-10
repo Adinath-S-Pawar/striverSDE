@@ -15,7 +15,7 @@ class StackQueue {
     void push(int x) {
         input.push(x);
     }
-    //input -> stack , output->queue
+    //input -> stack , output->queue behaviour
     // Removes the element from in front of queue and returns that element
     int pop() {
         // Shift input to output if output is empty
