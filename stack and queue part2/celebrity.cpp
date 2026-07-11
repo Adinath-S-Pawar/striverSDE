@@ -60,31 +60,58 @@ Note that M[i][i] is always 0.
 */
 
 //TC,SC - O(n)
+
 int celebrity(vector<vector<int>> &M, int n)
 {
-    int candidate = 0;
+    stack<int> st;
 
-    // Find candidate
-    for(int i = 1; i < n; i++)
+    // Push all people
+    for(int i = 0; i < n; i++)
     {
-        if(M[candidate][i] == 1)
+        st.push(i);
+    }
+
+    // Find potential celebrity
+    while(st.size() > 1)
+    {
+        int a = st.top();
+        st.pop();
+
+        int b = st.top();
+        st.pop();
+
+        if(M[a][b] == 1)
         {
-            candidate = i;
+            // a knows b, so a can't be celebrity
+            st.push(b);
+        }
+        else
+        {
+            // a doesn't know b, so b can't be celebrity
+            st.push(a);
         }
     }
 
-    // Verify row
+    int candidate = st.top();
+
+    // Verify candidate
+
+    // Row check: celebrity knows nobody
     for(int j = 0; j < n; j++)
     {
         if(M[candidate][j] == 1)
+        {
             return -1;
+        }
     }
 
-    // Verify column
+    // Column check: everyone knows celebrity
     for(int i = 0; i < n; i++)
     {
         if(i != candidate && M[i][candidate] == 0)
+        {
             return -1;
+        }
     }
 
     return candidate;
