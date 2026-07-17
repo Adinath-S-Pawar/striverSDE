@@ -20,30 +20,28 @@ class node
 
 /*
 TC - O(n)
-Traversal visits each node once → O(n)
-reverse() on a vector of size n → O(n)
-SC - O(n + h) 
+SC - O(n + h)
 for recur n = vec, h = auxilary stack space
 for iterative n = vec, h = stack
 */
-void preorderHelper(node* root, vector<int>& result)
+void postorderHelper(node* root, vector<int>& result)
 {
     if(root == NULL)
         return;
 
-    result.push_back(root->data);  // Root
-    preorderHelper(root->left, result);   // Left
-    preorderHelper(root->right, result);  // Right
+    postorderHelper(root->left, result);    // Left
+    postorderHelper(root->right, result);   // Right
+    result.push_back(root->data);           // Root
 }
 
-vector<int> preorder(node* root)
+vector<int> postorder(node* root)
 {
     vector<int> result;
-    preorderHelper(root, result);
+    postorderHelper(root, result);
     return result;
 }
 
-vector<int> preorder_iter(node* root)
+vector<int> postorder_iter(node* root)
 {
     vector<int> result;
 
@@ -60,13 +58,20 @@ vector<int> preorder_iter(node* root)
 
         result.push_back(current->data);
 
-        // Push right first so left is processed first
-        if(current->right)
-            stk.push(current->right);
-
+        // Push left first so right is processed first
         if(current->left)
             stk.push(current->left);
+
+        if(current->right)
+            stk.push(current->right);
     }
 
+    reverse(result.begin(), result.end());
+
     return result;
+}
+
+int main()
+{
+    return 0;
 }
