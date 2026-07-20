@@ -51,9 +51,11 @@ TreeNode<int>* solve(const vector<int>& preorder, int& preorderIndex, int inorde
     // Recursively build the left and right subtrees
     root->left = solve(preorder, preorderIndex, inorderStart, position - 1, nodevalToIndex);
     root->right = solve(preorder, preorderIndex, position + 1, inorderEnd, nodevalToIndex);
-
+    /*
+    passing inorder index is like passing inorder vec at that level*/
     return root;
 }
+
 TreeNode<int>* buildBinaryTree(const vector<int>& inorder, const vector<int>& preorder)
 {
     unordered_map<int, int> nodevalToIndex;
@@ -62,6 +64,7 @@ TreeNode<int>* buildBinaryTree(const vector<int>& inorder, const vector<int>& pr
     int preorderIndex = 0;
     return solve(preorder, preorderIndex, 0, inorder.size() - 1, nodevalToIndex);
 }
+
 int main()
 {
     return 0;
