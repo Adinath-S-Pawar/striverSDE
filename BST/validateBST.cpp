@@ -28,7 +28,7 @@ using namespace std;
             }
         }
     };
-//tc - O(n) sc - O(logn)
+//tc - O(n) sc - O(h)
 
 bool solve(BinaryTreeNode<int>* root,int min, int max)
 {
